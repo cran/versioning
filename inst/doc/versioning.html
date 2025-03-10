@@ -416,16 +416,16 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <p>You can always access the list of settings directly by subsetting <code>config$config_list</code> like a normal list, but the <code>Config$get()</code> method is sometimes preferable. For example, if you want to retrieve the setting listed under “a”, <code>config$get(&#39;a&#39;)</code> is equivalent to <code>config$config_list[[&#39;a&#39;]]</code>, but will throw an error if the setting “a” does not exist. You can also use the <code>config$get()</code> method for nested settings, as shown below:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="co"># Retrieve some example settings from the config file</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">message</span>(<span class="st">&quot;config$get(&#39;a&#39;) yields: &quot;</span>, config<span class="op">$</span><span class="kw">get</span>(<span class="st">&#39;a&#39;</span>))</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="co">#&gt; config$get(&#39;a&#39;) yields: foo</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="kw">message</span>(<span class="st">&quot;config$get(&#39;b&#39;) yields: &quot;</span>, config<span class="op">$</span><span class="kw">get</span>(<span class="st">&#39;b&#39;</span>))</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="co">#&gt; config$get(&#39;b&#39;) yields: barbaz</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="kw">message</span>(<span class="st">&quot;config$get(&#39;group_c&#39;, &#39;d&#39;) yields: &quot;</span>, config<span class="op">$</span><span class="kw">get</span>(<span class="st">&#39;group_c&#39;</span>, <span class="st">&#39;d&#39;</span>))</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="co">#&gt; config$get(&#39;group_c&#39;, &#39;d&#39;) yields: 1e5</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="co"># Update a setting</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a>config<span class="op">$</span>config_list<span class="op">$</span>a &lt;-<span class="st"> </span><span class="dv">12345</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="kw">message</span>(<span class="st">&quot;config$get(&#39;a&#39;) has been updated and now yields: &quot;</span>, config<span class="op">$</span><span class="kw">get</span>(<span class="st">&#39;a&#39;</span>))</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="co">#&gt; config$get(&#39;a&#39;) has been updated and now yields: 12345</span></span></code></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="co">#&gt; config$get(&#39;a&#39;) yields: foo</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="kw">message</span>(<span class="st">&quot;config$get(&#39;b&#39;) yields: &quot;</span>, config<span class="op">$</span><span class="kw">get</span>(<span class="st">&#39;b&#39;</span>))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="co">#&gt; config$get(&#39;b&#39;) yields: barbaz</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="kw">message</span>(<span class="st">&quot;config$get(&#39;group_c&#39;, &#39;d&#39;) yields: &quot;</span>, config<span class="op">$</span><span class="kw">get</span>(<span class="st">&#39;group_c&#39;</span>, <span class="st">&#39;d&#39;</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="co">#&gt; config$get(&#39;group_c&#39;, &#39;d&#39;) yields: 1e5</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="co"># Update a setting</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>config<span class="op">$</span>config_list<span class="op">$</span>a &lt;-<span class="st"> </span><span class="dv">12345</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="kw">message</span>(<span class="st">&quot;config$get(&#39;a&#39;) has been updated and now yields: &quot;</span>, config<span class="op">$</span><span class="kw">get</span>(<span class="st">&#39;a&#39;</span>))</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="co">#&gt; config$get(&#39;a&#39;) has been updated and now yields: 12345</span></span></code></pre></div>
 <p>There are two special sub-lists of the <code>config_list</code>, titled <code>directories</code> and <code>versions</code>, that can be handy for versioned R workflows with multiple steps. Each item in <code>directories</code> is structured with the following information:</p>
 <ol style="list-style-type: decimal">
 <li>Name of the sublist: how the directory is accessed from the config (in our example, “raw_data” or “prepared_data”)</li>
@@ -434,75 +434,75 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <li><code>files</code> (list): Named list of files within the directory</li>
 </ol>
 <p>In the example below, we’ll show a very simple workflow where data is originally placed in a “raw_data” directory, which is not versioned, and then some summaries are written to a “prepared_data” directory, which is versioned. This mimics some data science workflows where differences between data preparation methods and model results need to be tracked over time. For this example, we will use temporary directories for both:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co"># Update the raw_data and prepared_data directories to temporary directories for this</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a><span class="co"># example</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>config<span class="op">$</span>config_list<span class="op">$</span>directories<span class="op">$</span>raw_data<span class="op">$</span>path &lt;-<span class="st"> </span><span class="kw">tempdir</span>(<span class="dt">check =</span> T)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>config<span class="op">$</span>config_list<span class="op">$</span>directories<span class="op">$</span>prepared_data<span class="op">$</span>path &lt;-<span class="st"> </span><span class="kw">tempdir</span>(<span class="dt">check =</span> T)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="co"># Create directories</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="kw">message</span>(</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a>  <span class="st">&quot;Creating raw_data directory, which is not versioned: &quot;</span>,</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>  config<span class="op">$</span><span class="kw">get_dir_path</span>(<span class="st">&#39;raw_data&#39;</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a>)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a><span class="co">#&gt; Creating raw_data directory, which is not versioned: /tmp/RtmpTUQrNs</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a><span class="kw">dir.create</span>(config<span class="op">$</span><span class="kw">get_dir_path</span>(<span class="st">&#39;raw_data&#39;</span>), <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a><span class="kw">message</span>(</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a>  <span class="st">&quot;Creating prepared_data directory, which is versioned: &quot;</span>,</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a>  config<span class="op">$</span><span class="kw">get_dir_path</span>(<span class="st">&#39;prepared_data&#39;</span>)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a>)</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a><span class="co">#&gt; Creating prepared_data directory, which is versioned: /tmp/RtmpTUQrNs/v1</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a><span class="kw">dir.create</span>(config<span class="op">$</span><span class="kw">get_dir_path</span>(<span class="st">&#39;prepared_data&#39;</span>), <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a><span class="co"># Copy the example input file to the raw data folder</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true"></a><span class="kw">file.copy</span>(</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true"></a>  <span class="dt">from =</span> <span class="kw">system.file</span>(<span class="st">&#39;extdata&#39;</span>, <span class="st">&#39;example_input_file.csv&#39;</span>, <span class="dt">package =</span> <span class="st">&#39;versioning&#39;</span>),</span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true"></a>  <span class="dt">to =</span> config<span class="op">$</span><span class="kw">get_file_path</span>(<span class="dt">dir_name =</span> <span class="st">&#39;raw_data&#39;</span>, <span class="dt">file_name =</span> <span class="st">&#39;a&#39;</span>)</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true"></a>)</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="co"># Update the raw_data and prepared_data directories to temporary directories for this</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="co"># example</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a>config<span class="op">$</span>config_list<span class="op">$</span>directories<span class="op">$</span>raw_data<span class="op">$</span>path &lt;-<span class="st"> </span><span class="kw">tempdir</span>(<span class="dt">check =</span> T)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a>config<span class="op">$</span>config_list<span class="op">$</span>directories<span class="op">$</span>prepared_data<span class="op">$</span>path &lt;-<span class="st"> </span><span class="kw">tempdir</span>(<span class="dt">check =</span> T)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="co"># Create directories</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true"></a><span class="kw">message</span>(</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true"></a>  <span class="st">&quot;Creating raw_data directory, which is not versioned: &quot;</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true"></a>  config<span class="op">$</span><span class="kw">get_dir_path</span>(<span class="st">&#39;raw_data&#39;</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true"></a>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true"></a><span class="co">#&gt; Creating raw_data directory, which is not versioned: /tmp/RtmpZ7RZMr</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="kw">dir.create</span>(config<span class="op">$</span><span class="kw">get_dir_path</span>(<span class="st">&#39;raw_data&#39;</span>), <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="kw">message</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a>  <span class="st">&quot;Creating prepared_data directory, which is versioned: &quot;</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a>  config<span class="op">$</span><span class="kw">get_dir_path</span>(<span class="st">&#39;prepared_data&#39;</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a><span class="co">#&gt; Creating prepared_data directory, which is versioned: /tmp/RtmpZ7RZMr/v1</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="kw">dir.create</span>(config<span class="op">$</span><span class="kw">get_dir_path</span>(<span class="st">&#39;prepared_data&#39;</span>), <span class="dt">showWarnings =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="co"># Copy the example input file to the raw data folder</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a><span class="kw">file.copy</span>(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a>  <span class="dt">from =</span> <span class="kw">system.file</span>(<span class="st">&#39;extdata&#39;</span>, <span class="st">&#39;example_input_file.csv&#39;</span>, <span class="dt">package =</span> <span class="st">&#39;versioning&#39;</span>),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a>  <span class="dt">to =</span> config<span class="op">$</span><span class="kw">get_file_path</span>(<span class="dt">dir_name =</span> <span class="st">&#39;raw_data&#39;</span>, <span class="dt">file_name =</span> <span class="st">&#39;a&#39;</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>As seen above, we can use the <code>config$get_dir_path()</code> to access directory paths and <code>config$get_file_path()</code> to access files within a directory. Note also that the path for the “prepared_data” folder ends with “v1”: this is because <code>config$versions$prepared_data</code> is currently set to “v1”. In a future run of this workflow, we could change the folder version by updating this setting.</p>
 <p>We can also use the <code>config$read()</code> and <code>config$write()</code> functions to read and write files within these directories.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co"># Read that same table from file</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>df &lt;-<span class="st"> </span>config<span class="op">$</span><span class="kw">read</span>(<span class="dt">dir_name =</span> <span class="st">&#39;raw_data&#39;</span>, <span class="dt">file_name =</span> <span class="st">&#39;a&#39;</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="co"># Write a prepared table and a summary to file</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a>config<span class="op">$</span><span class="kw">write</span>(df, <span class="dt">dir_name =</span> <span class="st">&#39;prepared_data&#39;</span>, <span class="dt">file_name =</span> <span class="st">&#39;prepared_table&#39;</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a>config<span class="op">$</span><span class="kw">write</span>(</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a>  <span class="kw">paste</span>(<span class="st">&quot;The prepared table has&quot;</span>, <span class="kw">nrow</span>(df), <span class="st">&quot;rows and&quot;</span>, <span class="kw">ncol</span>(df), <span class="st">&quot;columns.&quot;</span>),</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a>  <span class="dt">dir_name =</span> <span class="st">&#39;prepared_data&#39;</span>,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a>  <span class="dt">file_name =</span> <span class="st">&#39;summary_text&#39;</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a>)</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a><span class="co"># Both files should now appear in the &quot;prepared_data&quot; directory</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a><span class="kw">list.files</span>(config<span class="op">$</span><span class="kw">get_dir_path</span>(<span class="st">&#39;prepared_data&#39;</span>)) </span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;example_prepared_table.csv&quot; &quot;summary_of_rows.txt&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="co"># Read that same table from file</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a>df &lt;-<span class="st"> </span>config<span class="op">$</span><span class="kw">read</span>(<span class="dt">dir_name =</span> <span class="st">&#39;raw_data&#39;</span>, <span class="dt">file_name =</span> <span class="st">&#39;a&#39;</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a><span class="co"># Write a prepared table and a summary to file</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true"></a>config<span class="op">$</span><span class="kw">write</span>(df, <span class="dt">dir_name =</span> <span class="st">&#39;prepared_data&#39;</span>, <span class="dt">file_name =</span> <span class="st">&#39;prepared_table&#39;</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true"></a>config<span class="op">$</span><span class="kw">write</span>(</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true"></a>  <span class="kw">paste</span>(<span class="st">&quot;The prepared table has&quot;</span>, <span class="kw">nrow</span>(df), <span class="st">&quot;rows and&quot;</span>, <span class="kw">ncol</span>(df), <span class="st">&quot;columns.&quot;</span>),</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true"></a>  <span class="dt">dir_name =</span> <span class="st">&#39;prepared_data&#39;</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true"></a>  <span class="dt">file_name =</span> <span class="st">&#39;summary_text&#39;</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true"></a>)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true"></a><span class="co"># Both files should now appear in the &quot;prepared_data&quot; directory</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true"></a><span class="kw">list.files</span>(config<span class="op">$</span><span class="kw">get_dir_path</span>(<span class="st">&#39;prepared_data&#39;</span>)) </span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;example_prepared_table.csv&quot; &quot;summary_of_rows.txt&quot;</span></span></code></pre></div>
 <p>These use the <code>autoread()</code> and <code>autowrite()</code> functions behind the scenes, and support any file extensions listed in <code>get_file_reading_functions()</code>/<code>get_file_writing_functions()</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">message</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>  <span class="st">&quot;Supported file types for reading: &quot;</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>  <span class="kw">paste</span>(<span class="kw">sort</span>(<span class="kw">names</span>(versioning<span class="op">::</span><span class="kw">get_file_reading_functions</span>())), <span class="dt">collapse =</span> <span class="st">&#39;, &#39;</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a><span class="co">#&gt; Supported file types for reading: csv, dbf, dta, geojson, geotiff, rda, rdata, rds, shp, tif, txt, yaml, yml</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="kw">message</span>(</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a>  <span class="st">&quot;Supported file types for writing: &quot;</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a>  <span class="kw">paste</span>(<span class="kw">sort</span>(<span class="kw">names</span>(versioning<span class="op">::</span><span class="kw">get_file_writing_functions</span>())), <span class="dt">collapse =</span> <span class="st">&#39;, &#39;</span>)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a>)</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a><span class="co">#&gt; Supported file types for writing: csv, geojson, geotiff, rda, rdata, rds, shp, tif, txt, yaml, yml</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">message</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a>  <span class="st">&quot;Supported file types for reading: &quot;</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a>  <span class="kw">paste</span>(<span class="kw">sort</span>(<span class="kw">names</span>(versioning<span class="op">::</span><span class="kw">get_file_reading_functions</span>())), <span class="dt">collapse =</span> <span class="st">&#39;, &#39;</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a><span class="co">#&gt; Supported file types for reading: bz2, csv, dbf, dta, e00, fgb, gdb, geojson, geojsonseq, geotiff, gml, gpkg, gps, gpx, gtm, gxt, gz, jml, kml, map, mdb, nc, ods, osm, pbf, rda, rdata, rds, shp, sqlite, tif, tsv, txt, vdv, xls, xlsx, yaml, yml</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">message</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a>  <span class="st">&quot;Supported file types for writing: &quot;</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a>  <span class="kw">paste</span>(<span class="kw">sort</span>(<span class="kw">names</span>(versioning<span class="op">::</span><span class="kw">get_file_writing_functions</span>())), <span class="dt">collapse =</span> <span class="st">&#39;, &#39;</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a><span class="co">#&gt; Supported file types for writing: csv, fgb, geojson, geotiff, gml, gpkg, gps, gpx, gtm, gxt, jml, kml, map, nc, ods, rda, rdata, rds, shp, sqlite, tif, txt, vdv, yaml, yml</span></span></code></pre></div>
 <p>There is also a helper function, <code>config$write_self()</code>, that will write the current config to a specified directory as a <code>config.yaml</code> file. For example, the following code block writes the current config to the versioned “prepared_data” directory:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="co"># Write the config object to the &quot;prepared_data&quot; directory</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a>config<span class="op">$</span><span class="kw">write_self</span>(<span class="dt">dir_name =</span> <span class="st">&#39;prepared_data&#39;</span>)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="co"># The &quot;prepared_data&quot; directory should now include &quot;config.yaml&quot;</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true"></a><span class="kw">list.files</span>(config<span class="op">$</span><span class="kw">get_dir_path</span>(<span class="st">&#39;prepared_data&#39;</span>))</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;config.yaml&quot;                &quot;example_prepared_table.csv&quot;</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true"></a><span class="co">#&gt; [3] &quot;summary_of_rows.txt&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="co"># Write the config object to the &quot;prepared_data&quot; directory</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a>config<span class="op">$</span><span class="kw">write_self</span>(<span class="dt">dir_name =</span> <span class="st">&#39;prepared_data&#39;</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a><span class="co"># The &quot;prepared_data&quot; directory should now include &quot;config.yaml&quot;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a><span class="kw">list.files</span>(config<span class="op">$</span><span class="kw">get_dir_path</span>(<span class="st">&#39;prepared_data&#39;</span>))</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;config.yaml&quot;                &quot;example_prepared_table.csv&quot;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true"></a><span class="co">#&gt; [3] &quot;summary_of_rows.txt&quot;</span></span></code></pre></div>
 <p>While you can always update settings, versions, and file paths by changing the input YAML file, it is sometimes more convenient to update versions in code or through command line arguments passed to a script. In these cases, you can specify the <code>versions</code> argument when creating a new Config object. This argument will set or overwrite the particular versions listed, while keeping other versions unchanged. For example, the following code block loads the config, but changes (only) the “prepared_data” version to “v2”.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="co"># Load a new custom config where the &quot;prepared_data&quot; version has been updated to &quot;v2&quot;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a>custom_versions &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">prepared_data =</span> <span class="st">&#39;v2&#39;</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a>config_v2 &lt;-<span class="st"> </span>versioning<span class="op">::</span>Config<span class="op">$</span><span class="kw">new</span>(</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a>  <span class="dt">config_list =</span> example_config_fp,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a>  <span class="dt">versions =</span> custom_versions</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a><span class="kw">print</span>(config_v2<span class="op">$</span><span class="kw">get_dir_path</span>(<span class="st">&#39;prepared_data&#39;</span>)) <span class="co"># Should now end in &quot;.../v2&quot;</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;~/versioning_test/prepared_data/v2&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="co"># Load a new custom config where the &quot;prepared_data&quot; version has been updated to &quot;v2&quot;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a>custom_versions &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">prepared_data =</span> <span class="st">&#39;v2&#39;</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a>config_v2 &lt;-<span class="st"> </span>versioning<span class="op">::</span>Config<span class="op">$</span><span class="kw">new</span>(</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a>  <span class="dt">config_list =</span> example_config_fp,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true"></a>  <span class="dt">versions =</span> custom_versions</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true"></a>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true"></a><span class="kw">print</span>(config_v2<span class="op">$</span><span class="kw">get_dir_path</span>(<span class="st">&#39;prepared_data&#39;</span>)) <span class="co"># Should now end in &quot;.../v2&quot;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true"></a><span class="co">#&gt; [1] &quot;~/versioning_test/prepared_data/v2&quot;</span></span></code></pre></div>
 <p>For more information about using this package, see the documentation on the <code>Config</code> object: <code>help(Config, package = &#39;versioning&#39;)</code>.</p>
 
 
